@@ -11,7 +11,7 @@ public class Behavior_Goal : MonoBehaviour
         {
             // Move to next scene if it exists
             int next_build_index = SceneManager.GetActiveScene().buildIndex + 1;
-            if (next_build_index <= SceneManager.sceneCount)
+            if (next_build_index < SceneManager.sceneCountInBuildSettings)
             {
                 SceneManager.LoadScene(next_build_index);
             }

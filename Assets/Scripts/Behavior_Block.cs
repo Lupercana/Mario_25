@@ -33,7 +33,9 @@ public class Behavior_Block : MonoBehaviour
         // Activate if player hits from below only
         if (collision.collider.tag == "Player")
         {
-            activate = collision.collider.transform.position.y <= this.transform.position.y;
+            activate = collision.collider.transform.position.y <= this.transform.position.y &&
+                collision.collider.transform.position.x >= this.ref_disable_collider.bounds.min.x &&
+                collision.collider.transform.position.x <= this.ref_disable_collider.bounds.max.x;
         }
 
         if (collision.collider.tag == "Fireball" || activate)
