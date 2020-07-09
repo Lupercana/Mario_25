@@ -12,6 +12,9 @@ public class Controller_Mario : MonoBehaviour
     [SerializeField] private Rigidbody2D ref_rbody = null;
     [SerializeField] private Animator ref_animator = null;
 
+    // Scripts
+    [SerializeField] private Effect_Cinemachine_Shake ref_script_shake = null;
+
     // Parameters
     [SerializeField] private float initial_speed = 0;
     [SerializeField] private float jump_velocity = 0;
@@ -72,6 +75,7 @@ public class Controller_Mario : MonoBehaviour
         int mask_ground_unshifted = (this.gameObject.layer == LayerMask.NameToLayer("Background")) ? LayerMask.NameToLayer("Background_Platform") : LayerMask.NameToLayer("Foreground_Platform");
         if (jumping && jump_frame_counter >= jump_reset_lock && Physics2D.OverlapCircle((Vector2)ref_ground_check.position, ground_check_rad, 1 << mask_ground_unshifted))
         {
+            ref_script_shake.Shake(transform.localScale.z); // Scale shake amount with size of Mario
             ref_animator.SetBool("jumping", false);
             jumping = false;
         }
