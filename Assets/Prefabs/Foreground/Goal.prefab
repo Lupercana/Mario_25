@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7411885032827002300}
   - component: {fileID: 8423442874855462808}
   - component: {fileID: 3835268067650510845}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6807797482966444650}
   - component: {fileID: 3202845441584276549}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smw_interactables_230
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7384506547884046529}
   - component: {fileID: 7169480680527749802}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smw_interactables_231
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8148177013435596431}
   - component: {fileID: 4700780377913774106}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smw_interactables_245
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8366568346615541337}
   - component: {fileID: 4409152831959862969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smw_interactables_244
   m_TagString: Untagged
   m_Icon: {fileID: 0}
