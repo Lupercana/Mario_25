@@ -6,6 +6,8 @@ public class Controller_Mario : MonoBehaviour
 {
     // References
     //[SerializeField] private LayerMask mask_ground = 0;
+    [SerializeField] private GameObject ref_shot_object = null;
+    [SerializeField] private Transform ref_shot_spawn = null;
     [SerializeField] private Transform ref_ground_check = null;
     [SerializeField] private Rigidbody2D ref_rbody = null;
     [SerializeField] private Animator ref_animator = null;
@@ -15,6 +17,8 @@ public class Controller_Mario : MonoBehaviour
     [SerializeField] private float jump_velocity = 0;
     [SerializeField] private float jump_root_scaling = 1;
     [SerializeField] private float jump_reset_lock = 0;
+    [SerializeField] private float shot_velocity = 0;
+    [SerializeField] private float shot_cd_seconds = 0;
 
     /*******************************/
 
@@ -23,6 +27,7 @@ public class Controller_Mario : MonoBehaviour
     private float input_vertical = 0;
 
     private float ground_check_rad = 0;
+    private float last_shot_time = 0;
     private int jump_frame_counter = 0;
     private bool vertical_lock = false;
     private bool facing_right = true;
@@ -71,13 +76,25 @@ public class Controller_Mario : MonoBehaviour
             jumping = false;
         }
 
-        // Can't handle jumping in FixedUpdate, need to catch all frames due to acting on key down
+        // Jumping, can't handle jumping in FixedUpdate, need to catch all frames due to acting on key down
         if (!jumping && input_vertical > 0)
         {
             ref_rbody.AddForce(new Vector2(0, jump_velocity * Mathf.Pow(transform.localScale.z, jump_root_scaling)), ForceMode2D.Force);
             ref_animator.SetBool("jumping", true);
             jumping = true;
             jump_frame_counter = 0;
+        }
+
+        // Shoot fireball
+        float e_time = Time.time - last_shot_time;
+        if (Input.GetButton("Shoot") && e_time >= shot_cd_seconds)
+        {
+            ref_animator.Play("mario_shoot");
+            var inst = Instantiate(ref_shot_object, ref_shot_spawn.position, Quaternion.identity);
+            inst.layer = gameObject.layer;
+            inst.transform.localScale *= this.transform.localScale.z;
+            inst.GetComponent<Rigidbody2D>().AddForce(Vector2.right * shot_velocity * (facing_right ? 1 : -1));
+            last_shot_time = Time.time;
         }
     }
 
