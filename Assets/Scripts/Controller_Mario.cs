@@ -98,6 +98,7 @@ public class Controller_Mario : MonoBehaviour
             inst.layer = gameObject.layer;
             inst.transform.localScale *= this.transform.localScale.z;
             inst.GetComponent<Rigidbody2D>().AddForce(Vector2.right * shot_velocity * (facing_right ? 1 : -1));
+            inst.GetComponent<SpriteRenderer>().sortingLayerName = (inst.layer == LayerMask.NameToLayer("Foreground")) ? "Default" : "Background";
             last_shot_time = Time.time;
         }
     }
