@@ -13,6 +13,7 @@ public class Behavior_Coin : MonoBehaviour
         collision.collider.gameObject.transform.localScale *= multiplier;
 
         float z = collision.collider.gameObject.transform.localScale.z;
+        Debug.Log(z);
         if (z > max_scale)
         {
             collision.collider.gameObject.transform.localScale *= (max_scale / z);
